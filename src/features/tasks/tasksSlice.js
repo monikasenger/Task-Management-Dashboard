@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchTasksApi, addTaskApi, updateTaskApi, deleteTaskApi } from "./tasksApi";
-
+import db from "../../data/db.json"
 export const fetchTasks = createAsyncThunk("tasks/fetch", async () => {
   const res = await fetchTasksApi();
   return res.data;
@@ -25,7 +25,7 @@ export const deleteTask = createAsyncThunk("tasks/delete", async (id) => {
 const tasksSlice = createSlice({
   name: "tasks",
   initialState: {
-    list: [],
+    list: db.tasks,
     filter: "all",
     search: "",
     loading: false,
